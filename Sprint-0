@@ -1,0 +1,169 @@
+# Sprint 0 Document
+
+## 📌 Project
+
+- **Projectnaam:** `<Tech Campus Overzichts Tool>`  
+- **Korte omschrijving (1–2 zinnen):** 
+`<zoekt internet af voor opgaves van buitenwereld koppelen met buitenwereld 
+(problemen vinden en oplossingen aanbieden) zoeken naar contact gegevens/personen
+om aan opdrachten te kunnen werken>`
+
+---
+
+## 🧑‍🤝‍🧑 Wie
+
+| Rol                       | Naam                 | E-mail                         | Telefoon         |
+| ------------------------- | -------------------- | ------------------------------ | ---------------- |
+| **Product Owner (klant)** | `<Klaas de Jong>`    | `<nga.d.jong@purmerend.nl>`    | `<06-29313578>`  |
+| **Scrum Coach**           | `<Arne>`             | `<arneveltman@gmail.com>`      | `<06-27204105>`  |
+| **Developer 1**           | `<Hugo>`             | `<jurriaans.hugo@gmail.com>`   | `<06-11134669>`  |
+| **Developer 2**           | `<Tomas>`            | `<tomas.matthesius@gmail.com>` | `<06-83436912>`  |
+| **Developer 3**           | `<Caspar>`           | `<Unknown.com>`                | `<06-27597585>`  |
+
+---
+
+## 🎯 Wat
+
+### Doel van het project
+`<Dit project zal het voor de Tech campus makkelijker maken om problemen of evenementen te kunnen opstellen en fixen>`
+
+### Eisen en wensen
+
+**Eisen (Must-haves):**
+- [ ] `<1. Artikels selecteren>`
+        > Gebruiker kan een Artikel (probleem) selecteren uit een lijst.
+
+        > Een artikel beschrijft de context van het probleem, met:
+          > Inleiding, Alinea's en Slot.
+          > Duidelijke beschrijving van het probleem.
+
+        > Tijdens het selecteren:
+          > Kan de gebruiker het Artikel lezen.
+
+        > Na het lezen van het Artikel:
+          > Kan de gebruiker het Artikel sluiten.
+          > Optioneel: Comments geven op Artikels.
+
+- [ ] `<2. Relevante Bedrijven opzoeken>`
+        > Naast de Artikels worden relevante bedrijven getoont.
+
+        > Elk bedrijf toont:
+          > Bedrijfnaam
+          > Icoon / Foto
+          > Beschrijving
+          > Tags
+
+- [ ] **Responsief** (Desktop & Mobiel)
+
+**Wensen (Nice-to-haves):**
+- [ ] `<Dedicated Searchbar en catalogue voor Bedrijven>`
+- [ ] `<Bedrijven kunnen zelf een account aanmaken specifiek voor bedrijven>`
+
+---
+
+## 🧍‍♀️ User Stories (MoSCoW)
+
+### ✅ Must have (M)
+- [ ] `<Als casual geruiker wil ik artikelen kunnen selecteren en lezen>`  
+- [ ] `<Als casual gebruiker wil ik kunnen opzoeken welke bedrijven aanwezig zijn>`
+
+### 🟠 Should have (S)
+- [ ] `<Als competatieve gebruiker wil ik kunnen zien welke bedrijven passen bij een zoekterm of geselecteerd Artikel>`  
+- [ ] `<Als competatieve gebruiker wil ik via mijn telefoon ook de website kunnen bekijken (Mobile Responsive)>`
+
+### 🔵 Could have (C)
+- [ ] `<Als gebruiker kan ik selecteren welke bedrijven mij een ping geven als ze nieuwe artikelen plaatsen>`
+
+### ⚫ Won’t have (W) (nu niet / later misschien)
+- [ ] `<Als gebruiker wil ik een vriendensysteem waarin ik collega's en/of bedrijven vriendenverzoeken >`
+
+> **Voorbeeld (niet automatisch overnemen):**  
+> *Als bezoeker wil ik een **homepagina** zien zodat ik kan leren wat de bakkerij biedt.* (M)  
+> *Als beheerder wil ik **producten kunnen toevoegen/bewerken** zodat de lijst up-to-date blijft.* (S)
+
+---
+
+## 🗓️ Wanneer
+
+### Sprints
+- Duur per sprint: **1 week**
+- Startdatum Sprint 1: `<15-06-2026>`
+- Totale duur traject (optioneel): `<3 weken>`
+
+### Meetings (fysiek – Lokaal Mars, Bit Academy)
+
+| Type                                       | Datum          | Tijd    | Locatie               |
+| ------------------------------------------ | -------------- | ------- | --------------------- |
+| Sprint 1 **planning**                      | `<12 06 2026>` | `13:30` | Lokaal purmerend      |
+| Sprint 2 **review + planning**             | `<19 06 2026>` | `10:00` | Lokaal purmerend      |
+| Sprint 2 **retrospective**                 | `<19 06 2026>` | `11:00` | Lokaal purmerend      |
+| Sprint 3 **halfway presentatie**           | `<19 06 2026>` | `12:00` | Lokaal purmerend      |
+| Sprint 4 **review + planning**             | `<26 06 2026>` | `10:00` | Lokaal purmerend      |
+| Sprint 4 **retrospective**                 | `<03 07 2026>` | `10:00` | Lokaal purmerend      |
+| Sprint 4 **eindpresentatie**               | `<03 07 2026>` | `12:00` | Lokaal purmerend      |
+
+> Pas data aan op basis van jouw kalender. Alle meetings zijn fysiek, tenzij anders afgesproken met de coach/klant.
+
+### Dagelijkse stand-up
+- Tijd: **09:00** (max. 15 min)
+- Locatie: **fysiek in Lokaal Aarde**
+- Doel: *Gisteren / Vandaag / Blokkades*
+
+### Teaminzet & beschikbaarheid
+- **Minimale aanwezigheid:** **di, wo, do, vr** voor alle teamleden
+- Overzicht per persoon:
+  - `<Tomas>` : `<Dinsdag (09:30-15:00 vakles rekenen), Woensdag (08:30-15:00), Donderdag (08:30-15:00), Vrijdag (08:30-15:00)>`
+  - `<Arne>`  : `<Dinsdag (08:30-15:00), Woensdag (08:30-15:00), Donderdag (08:30-15:00), Vrijdag (08:30-15:00)>`
+  - `<Jairo>` : `<Dinsdag (08:30-15:00), Woensdag (08:30-15:00), Donderdag (08:30-15:00), Vrijdag (08:30-15:00)>`
+  - `<Rafael>`: `<Dinsdag (08:30-15:00), Woensdag (08:30-15:00), Donderdag (08:30-15:00), Vrijdag (08:30-15:00)>`
+  - `<Hugo>`  : `<Dinsdag (08:30-15:00), Woensdag (08:30-15:00), Donderdag (08:30-15:00), Vrijdag (08:30-15:00)>`
+
+**Afwezigheid & afspraken**
+- [X] Ziek/afwezig vóór **08:30** melden via **Mattermost**
+- [X] Te laat? Direct melden in **teamchat**
+- [X] Bij langdurige afwezigheid: taken herverdelen (Scrum Master)
+
+**Communicatiekanalen**
+- **Team:** Mattermost (`<kanaalnaam>`)
+- **Code & planning:** GitHub Projects (Bit Academy template)
+- **Klantcontact:** e-mail (`<ties@bit-academy.nl>`)
+
+---
+
+## ⚙️ Hoe
+
+### Definition of Ready (DoR)
+Een user story is *Ready* als:
+- [X] Doel & acceptatiecriteria zijn duidelijk
+- [X] Ontwerp/wireframe of voorbeeld beschikbaar (indien van toepassing)
+- [X] Benodigde data/API’s bekend
+- [X] Team kan inschatten (story points/t-shirt size)
+- [X] Past binnen sprintcapaciteit
+
+### Definition of Done (DoD)
+Een user story is *Done* als:
+- [X] Werkt functioneel en technisch (incl. tests)
+- [X] Peer review gedaan (min. 1 teamlid)
+- [X] Voldoet aan acceptatiecriteria & design
+- [X] Documentatie bijgewerkt (README/handleiding)
+- [X] Ge-merged naar **main**
+
+---
+
+## 🔧 Scrum werkwijze
+
+- [X] Iedere sprint **eindigt met review** en **start met planning** (achter elkaar, met klant)
+- [X] **Retrospectives** in **Sprint 2** en **Sprint 4**
+- [X] Taken & user stories via **GitHub Projects**  
+  Template: https://github.com/orgs/Bit-Academy-Students/projects/1
+- [X] Communicatie: **Mattermost** voor team, e-mail voor klant
+- [X] **Definition of Ready** en **Definition of Done** bekend bij alle teamleden
+
+---
+
+## 📎 Bijlagen (optioneel)
+
+- Link naar repo: `<https://github.com/matthesius/Bit-academy-project-week-1>`  
+- Link naar designs/wireframes: `<url>`  
+- Link naar product backlog: `<url>`  
+- Contactgegevens klant (adres/locatie): `<Spinnekop 2, 1444 GN Purmerend>`
