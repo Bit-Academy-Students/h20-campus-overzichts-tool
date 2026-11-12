@@ -13,20 +13,21 @@ use Illuminate\Support\Carbon;
 
 /**
  * @property int $id
- * @property string $name
+ * @property string $first_name
+ * @property string $last_name
  * @property string $email
- * @property Carbon|null $email_verified_at
  * @property string $password
- * @property string|null $remember_token
+ * @property string $role
  * @property Carbon|null $created_at
- * @property Carbon|null $updated_at
  */
-#[Fillable(['name', 'email', 'password'])]
-#[Hidden(['password', 'remember_token'])]
+#[Fillable(['first_name', 'last_name', 'email', 'password', 'role'])]
+#[Hidden(['password'])]
 class User extends Authenticatable
 {
     /** @use HasFactory<UserFactory> */
     use HasFactory, Notifiable;
+
+    public const UPDATED_AT = null;
 
     /**
      * Get the attributes that should be cast.
@@ -36,7 +37,6 @@ class User extends Authenticatable
     protected function casts(): array
     {
         return [
-            'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
     }

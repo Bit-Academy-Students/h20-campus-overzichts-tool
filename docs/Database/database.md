@@ -3,7 +3,7 @@
 Documentatie van de database van de Campus Lead Management Tool (portfolio-examen).
 
 - **Database:** MySQL (InnoDB, `utf8mb4`)
-- **Bestand:** `database.sql` maakt alle tabellen aan
+- **Bestand:** `structure.sql` maakt alle tabellen aan
 - **Importeren:** het script gebruikt `CREATE TABLE IF NOT EXISTS`, dus het kan veilig opnieuw worden uitgevoerd
 
 ## Hoe het werkt
@@ -13,71 +13,71 @@ Documentatie van de database van de Campus Lead Management Tool (portfolio-exame
 3. De medewerker **wijst** die opdracht daarna **toe aan een bedrijf** dat hem kan oplossen.
 4. Tags op opdrachten en bedrijven helpen om te zien welk bedrijf bij welke opdracht past.
 
-Een opdracht zonder rij in `opdracht_toewijzingen` is nog **open**.
+Een opdracht zonder rij in `assignment_claims` is nog **open**.
 
 ## Overzicht van de relaties
 
 ```
-opdrachten --- opdracht_tags --- tags --- bedrijf_tags --- bedrijven
+assignments --- assignment_tags --- tags --- company_tags --- companies
     |                                                          |
-    +-------------- opdracht_toewijzingen ---------------------+
+    +-------------- assignment_claims ---------------------+
                             |
-                        personen
+                        users
 
 keywords   (los)
-bronnen    (los)
+sources    (los)
 ```
 
 ## Tabellen
 
-### `personen`
+### `users`
 Gebruikers met een login (gemeente-medewerkers en admins).
 
 | Kolom | Beschrijving |
 |---|---|
 | `id` | Primaire sleutel |
-| `voornaam`, `achternaam` | Naam |
+| `first_name`, `last_name` | Naam |
 | `email` | Uniek, wordt gebruikt om in te loggen |
-| `wachtwoord_hash` | Gehashte versie van het wachtwoord (nooit het wachtwoord zelf) |
-| `rol` | `gemeente` of `admin` |
+| `password` | Gehashte versie van het wachtwoord (nooit het wachtwoord zelf) |
+| `role` | `municipality` of `admin` |
 | `created_at` | Aanmaakmoment |
 
-### `bedrijven`
+### `companies`
 Bedrijven die opdrachten kunnen oplossen.
 
 | Kolom | Beschrijving |
 |---|---|
 | `id` | Primaire sleutel |
-| `naam` | Naam van het bedrijf |
-| `beschrijving` | Wat het bedrijf doet |
-| `website`, `email`, `telefoon` | Contactgegevens |
-| `adres`, `plaats` | Locatie |
+| `name` | Naam van het bedrijf |
+| `description` | Wat het bedrijf doet |
+| `website`, `email`, `phone` | Contactgegevens |
+| `address`, `city` | Locatie |
 | `created_at` | Aanmaakmoment |
 
-### `opdrachten`
+### `assignments`
 Opdrachten die van internet zijn gehaald.
 
 | Kolom | Beschrijving |
 |---|---|
 | `id` | Primaire sleutel |
-| `titel` | Titel van de opdracht |
-| `beschrijving` | Omschrijving |
-| `bron_url` | Link naar de originele opdracht (uniek, zodat dezelfde opdracht niet dubbel wordt opgeslagen) |
-| `geplaatst_op` | Datum waarop de opdracht online kwam |
+| `title` | Titel van de opdracht |
+| `description` | Omschrijving |
+| `source_url` | Link naar de originele opdracht (uniek, zodat dezelfde opdracht niet dubbel wordt opgeslagen) |
+| `posted_at` | Datum waarop de opdracht online kwam |
 | `scraped_at` | Moment waarop de opdracht is opgehaald |
 
-### `opdracht_toewijzingen`
+### `assignment_claims`
 Hier legt een gemeente-medewerker vast dat hij een opdracht claimt en aan welk bedrijf hij hem geeft.
 
 | Kolom | Beschrijving |
 |---|---|
 | `id` | Primaire sleutel |
-| `opdracht_id` | De opdracht (uniek: een opdracht kan maar een keer geclaimd worden) |
-| `gemeente_persoon_id` | De medewerker die de opdracht claimde (`personen`) |
-| `bedrijf_id` | Het bedrijf dat de opdracht oplost. Leeg betekent geclaimd maar nog niet toegewezen |
-| `status` | `geclaimd`, `toegewezen` of `afgerond` |
-| `geclaimd_op` | Moment van claimen |
-| `toegewezen_op` | Moment van toewijzen aan een bedrijf |
+| `assignment_id` | De opdracht (uniek: een opdracht kan maar een keer geclaimd worden) |
+| `user_id` | De medewerker die de opdracht claimde (`users`) |
+| `company_id` | Het bedrijf dat de opdracht oplost. Leeg betekent geclaimd maar nog niet toegewezen |
+| `status` | `claimed`, `assigned` of `completed` |
+| `claimed_at` | Moment van claimen |
+| `assigned_at` | Moment van toewijzen aan een bedrijf |
 
 ### `tags`
 Labels (bijvoorbeeld `webdevelopment`, `marketing`) waarmee bedrijven en opdrachten worden gekoppeld.
@@ -85,14 +85,14 @@ Labels (bijvoorbeeld `webdevelopment`, `marketing`) waarmee bedrijven en opdrach
 | Kolom | Beschrijving |
 |---|---|
 | `id` | Primaire sleutel |
-| `naam` | Naam van de tag (uniek) |
+| `name` | Naam van de tag (uniek) |
 
-### `bedrijf_tags` en `opdracht_tags`
+### `company_tags` en `assignment_tags`
 Koppeltabellen voor een veel-op-veel-relatie: een bedrijf of opdracht kan meerdere tags hebben en een tag kan bij meerdere bedrijven of opdrachten horen.
 
 | Kolom | Beschrijving |
 |---|---|
-| `bedrijf_id` / `opdracht_id` | Het bedrijf of de opdracht |
+| `company_id` / `assignment_id` | Het bedrijf of de opdracht |
 | `tag_id` | De tag |
 
 ### `keywords`
@@ -101,22 +101,22 @@ Losse tabel met zoektermen om opdrachten mee te vinden. Heeft geen koppeling met
 | Kolom | Beschrijving |
 |---|---|
 | `id` | Primaire sleutel |
-| `woord` | Het zoekwoord (uniek) |
+| `word` | Het zoekwoord (uniek) |
 
-### `bronnen`
+### `sources`
 Losse tabel met websites waar opdrachten vandaan komen. Heeft geen koppeling met andere tabellen.
 
 | Kolom | Beschrijving |
 |---|---|
 | `id` | Primaire sleutel |
-| `naam` | Naam van de bron |
+| `name` | Naam van de bron |
 | `url` | Adres van de bron (uniek) |
-| `actief` | `1` = wordt gebruikt, `0` = uitgeschakeld |
+| `active` | `1` = wordt gebruikt, `0` = uitgeschakeld |
 
 ## Verwijderregels
 
 - Een opdracht verwijderen verwijdert ook zijn toewijzing en zijn tags.
-- Een bedrijf verwijderen verwijdert zijn tags. Toewijzingen blijven bestaan, maar `bedrijf_id` wordt leeg.
+- Een bedrijf verwijderen verwijdert zijn tags. Toewijzingen blijven bestaan, maar `company_id` wordt leeg.
 - Een tag verwijderen verwijdert de koppelingen met bedrijven en opdrachten.
 - Een persoon die een opdracht heeft geclaimd kan niet worden verwijderd zolang die toewijzing bestaat.
 
@@ -126,29 +126,29 @@ Alle open opdrachten:
 
 ```sql
 SELECT o.*
-FROM opdrachten o
-LEFT JOIN opdracht_toewijzingen t ON t.opdracht_id = o.id
+FROM assignments o
+LEFT JOIN assignment_claims t ON t.assignment_id = o.id
 WHERE t.id IS NULL;
 ```
 
 Bedrijven die passen bij een opdracht (via gedeelde tags):
 
 ```sql
-SELECT b.id, b.naam, COUNT(*) AS gedeelde_tags
-FROM opdracht_tags ot
-JOIN bedrijf_tags bt ON bt.tag_id = ot.tag_id
-JOIN bedrijven b ON b.id = bt.bedrijf_id
-WHERE ot.opdracht_id = 1
-GROUP BY b.id, b.naam
-ORDER BY gedeelde_tags DESC;
+SELECT b.id, b.name, COUNT(*) AS shared_tags
+FROM assignment_tags ot
+JOIN company_tags bt ON bt.tag_id = ot.tag_id
+JOIN companies b ON b.id = bt.company_id
+WHERE ot.assignment_id = 1
+GROUP BY b.id, b.name
+ORDER BY shared_tags DESC;
 ```
 
 Opdrachten die een medewerker heeft geclaimd:
 
 ```sql
-SELECT o.titel, t.status, b.naam AS bedrijf
-FROM opdracht_toewijzingen t
-JOIN opdrachten o ON o.id = t.opdracht_id
-LEFT JOIN bedrijven b ON b.id = t.bedrijf_id
-WHERE t.gemeente_persoon_id = 1;
+SELECT o.title, t.status, b.name AS company
+FROM assignment_claims t
+JOIN assignments o ON o.id = t.assignment_id
+LEFT JOIN companies b ON b.id = t.company_id
+WHERE t.user_id = 1;
 ```
