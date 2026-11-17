@@ -101,3 +101,73 @@ input[type="text"] {
 p#username, p#welcomemessage {
     margin: 0;
 }
+
+.articleDiv {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 10px;
+    border: solid 1px black;
+    background-color: white;
+    border-radius: 5px;
+    width: 90%;
+}
+
+.titleContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: space-between;
+    width: 90%;
+    margin-left: 5px;
+}
+
+.favContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    height: 30px;
+    width: 30px;
+    right: 5%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.tagsContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    width: 90%;
+}
+
+.articleTitle {
+    margin: 0;
+}
+
+.tagslabel {
+    font-weight: bold;
+    margin: 0;
+}
+
+.articleTags {
+    margin: 0;
+}
+
+.favButton {
+    appearance: none;
+    box-sizing: border-box;
+    border: 1px solid black;
+    border-radius: 3px;
+    width: 15px;
+    height: 15px;
+    flex: 0 0 15px;
+    margin: 0;
+}
+
+.favButton:checked {
+    background-color: #E53362;
+    border: solid 1px #E76762;
+}

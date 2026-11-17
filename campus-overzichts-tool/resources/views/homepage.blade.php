@@ -17,7 +17,7 @@
     <x-navbar />
     <div id="rowlayout">
         <div id="articlesearch">
-            <input type="text" placeholder="Zoek Artikels">
+            <input id="articleinput" type="text" placeholder="Zoek Artikels">
             <div id="articlelist"></div>
             <div id="welcome">
                 <p id="welcomemessage">Welkom Terug!</p>
@@ -28,7 +28,7 @@
 
         </div>
         <div id="companysearch">
-            <input type="text" placeholder="Zoek Bedrijven">
+            <input id="companyinput" type="text" placeholder="Zoek Bedrijven">
             <div id="companylist"></div>
         </div>
     </div>
