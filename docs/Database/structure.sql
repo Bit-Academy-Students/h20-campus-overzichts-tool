@@ -100,3 +100,14 @@ CREATE TABLE IF NOT EXISTS assignment_tags (
   CONSTRAINT fk_assignment_tags_tag
     FOREIGN KEY (tag_id) REFERENCES tags (id) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS assignment_favorites (
+  user_id        INT UNSIGNED NOT NULL,
+  assignment_id  INT UNSIGNED NOT NULL,
+  PRIMARY KEY (user_id, assignment_id),
+  KEY idx_assignment_favorites_assignment (assignment_id),
+  CONSTRAINT fk_assignment_favorites_user
+    FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE,
+  CONSTRAINT fk_assignment_favorites_assignment
+    FOREIGN KEY (assignment_id) REFERENCES assignments (id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
