@@ -74,7 +74,7 @@ CREATE TABLE IF NOT EXISTS assignment_claims (
   CONSTRAINT fk_claims_assignment
     FOREIGN KEY (assignment_id) REFERENCES assignments (id) ON DELETE CASCADE,
   CONSTRAINT fk_claims_user
-    FOREIGN KEY (user_id) REFERENCES users (id),
+    FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE,
   CONSTRAINT fk_claims_company
     FOREIGN KEY (company_id) REFERENCES companies (id) ON DELETE SET NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
