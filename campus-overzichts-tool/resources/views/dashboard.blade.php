@@ -4,7 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tech Campus Dashboard</title>
+    <title>Tech Campus - Dashboard</title>
+    <link rel="icon" type="image/svg+xml" href="{{ asset('favicon.svg') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicon-32x32.png') }}">
+    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
+    <link rel="apple-touch-icon" href="{{ asset('apple-touch-icon.png') }}">
     @vite([
         'resources/css/homepage.css',
         'resources/js/lib/homepage.js',
@@ -17,7 +21,10 @@
     <x-navbar />
     <div id="rowlayout">
         <div id="articlesearch">
-            <input id="articleinput" type="text" placeholder="Zoek Artikels">
+            <div id="articleinputDiv">
+                <input id="articleinput" type="text" placeholder="Zoek Artikels">
+                <button id="articlesort">Name</button>
+            </div>
             <div id="articlelist"></div>
             <div id="welcome">
                 <p id="welcomemessage">Welkom Terug!</p>

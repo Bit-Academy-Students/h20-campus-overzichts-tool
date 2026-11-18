@@ -41,7 +41,7 @@ body {
     border-radius: 15px;
     transition: all 1s ease;
     margin-right: 10px;
-    background-color: whitesmoke;
+    background-color: gray;
 }
 
 #buttondiv {
@@ -50,20 +50,23 @@ body {
     align-items: center;
     justify-content: space-between;
     gap: 8px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.navbutton {
+a.navbutton {
     border: 1px gray solid;
     border-radius: 3px;
     color: white;
     padding: 5px;
     background-color: darkgray;
-    transition: all 0.5s ease ;
+    transition: all 0.5s ease;
     width: 75px;
+    text-decoration: none;
+    text-align: center;
 }
 
 .navbutton:hover {
     background-color: #E53362;
     font-weight: bold;
-    border: 1px #E76762 solid  ;
+    border: 1px #E76762 solid;
 }

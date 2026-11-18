@@ -1,19 +1,37 @@
+searchArticles();
+
 document.getElementById("articleinput").addEventListener("input", () => {
-    searchArticles();
+    const sortByName = document.getElementById("articlesort").textContent === "Name";
+    const search = document.getElementById("articleinput").value.toLowerCase();
+    searchArticles(search, sortByName);
 });
 
-async function searchArticles() {
+document.getElementById("articlesort").addEventListener("click", () => {
+    setArticleSort();
+});
+
+async function searchArticles(search = "", sortByName = true) {
     //const res = await fetch("");
     //const data = res.json();
 
-    const data = [{title: "TESTTESTTEST", tags: ["Test", "Test", "Test"]}];
+    const data = [{ title: "TESTTESTTEST", tags: ["Test", "Test", "Test"] }];
 
     const maindiv = document.getElementById("articlelist");
+    maindiv.innerHTML = "";
+    const filteredData = data.filter((article) => {
+        if (sortByName) {
+            return article.title.toLowerCase().includes(search.toLowerCase());
+        }
 
-    for (let i = 0; i < data.length; i++) {
+        return article.tags.some((tag) => tag.toLowerCase().includes(search.toLowerCase()));
+    });
+    console.log(filteredData);
+    
+    for (let i = 0; i < filteredData.length; i++) {
+        const article = filteredData[i];
         const articleDiv = document.createElement("div");
         const titleContainer = document.createElement("div");
-        const favContainer = document.createElement("div"); 
+        const favContainer = document.createElement("div");
         const tagsContainer = document.createElement("div");
         const title = document.createElement("h4");
         const tagslabel = document.createElement("p");
@@ -25,19 +43,19 @@ async function searchArticles() {
         favContainer.setAttribute("class", "favContainer");
         tagsContainer.setAttribute("class", "tagsContainer")
         title.setAttribute("class", "articleTitle");
-        title.textContent = data[i].title;
+        title.textContent = article.title;
         tagslabel.setAttribute("class", "tagslabel");
         tagslabel.textContent = "Tags:";
         tags.setAttribute("class", "articleTags");
-        tags.textContent = JSON.stringify(data[i].tags).replaceAll("[", "").replaceAll("]", "").replaceAll("\"","");
+        tags.textContent = article.tags.join(", ");
         favButton.setAttribute("class", "favButton");
         favButton.setAttribute("type", "checkbox");
 
         favButton.addEventListener("click", () => {
             if (favButton.checked) {
-                setFavorites(i, data[i].title, true);
+                setFavorites(i, article.title, true);
             } else {
-                setFavorites(i, data[i].title, false);
+                setFavorites(i, article.title, false);
             }
         });
 
@@ -57,7 +75,7 @@ async function searchArticles() {
 //    const data = res.json();
 //
 //}
-//
+
 //function displayContent() {
 //
 //}
@@ -67,5 +85,19 @@ function setFavorites(id, title, add) {
         console.log(`${id} ${title} added`);
     } else {
         console.log(`${id} ${title} removed`)
+    }
+}
+
+function setArticleSort() {
+    const sortbutton = document.getElementById("articlesort");
+    const search = document.getElementById("articleinput").value.toLowerCase();
+    console.log(search);
+
+    if (sortbutton.textContent === "Name") {
+        sortbutton.textContent = "Tags";
+        searchArticles(search, false);
+    } else {
+        sortbutton.textContent = "Name";
+        searchArticles(search, true);
     }
 }
