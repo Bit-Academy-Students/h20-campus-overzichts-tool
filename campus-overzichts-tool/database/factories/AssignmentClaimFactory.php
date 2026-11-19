@@ -2,23 +2,23 @@
 
 namespace Database\Factories;
 
-use App\Models\Assignment_Claims;
+use App\Models\AssignmentClaim;
 use App\Models\Assignments;
-use App\Models\Companies;
+use App\Models\Opdrachtnemer;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends Factory<Assignment_Claims>
+ * @extends Factory<AssignmentClaim>
  */
-class Assignment_ClaimsFactory extends Factory
+class AssignmentClaimFactory extends Factory
 {
     public function definition(): array
     {
         return [
             'assignment_id' => Assignments::factory(),
             'user_id' => User::factory(),
-            'company_id' => null,
+            'opdrachtnemer_id' => null,
             'status' => 'claimed',
             'claimed_at' => fake()->dateTimeBetween('-2 months', '-1 week'),
             'assigned_at' => null,
@@ -28,7 +28,7 @@ class Assignment_ClaimsFactory extends Factory
     public function assigned(): static
     {
         return $this->state(fn (array $attributes) => [
-            'company_id' => Companies::factory(),
+            'opdrachtnemer_id' => Opdrachtnemer::factory(),
             'status' => 'assigned',
             'assigned_at' => fake()->dateTimeBetween($attributes['claimed_at'], 'now'),
         ]);

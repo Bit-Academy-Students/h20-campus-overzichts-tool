@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
@@ -15,7 +16,7 @@ class Assignments extends Model
 
     public $timestamps = false;
 
-    protected $fillable = ['title', 'description', 'source_url', 'posted_at', 'scraped_at'];
+    protected $fillable = ['opdrachtgever_id', 'title', 'description', 'source_url', 'posted_at', 'scraped_at'];
 
     protected function casts(): array
     {
@@ -25,6 +26,11 @@ class Assignments extends Model
         ];
     }
 
+    public function opdrachtgever(): BelongsTo
+    {
+        return $this->belongsTo(Opdrachtgever::class, 'opdrachtgever_id');
+    }
+
     public function tags(): BelongsToMany
     {
         return $this->belongsToMany(Tags::class, 'assignment_tags', 'assignment_id', 'tag_id');
@@ -32,7 +38,7 @@ class Assignments extends Model
 
     public function claim(): HasOne
     {
-        return $this->hasOne(Assignment_Claims::class, 'assignment_id');
+        return $this->hasOne(AssignmentClaim::class, 'assignment_id');
     }
 
     public function favoritedBy(): BelongsToMany

@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS users (
   UNIQUE KEY uq_users_email (email)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS companies (
+CREATE TABLE IF NOT EXISTS opdrachtnemers (
   id           INT UNSIGNED NOT NULL AUTO_INCREMENT,
   name         VARCHAR(150) NOT NULL,
   description  TEXT NULL,
@@ -25,15 +25,47 @@ CREATE TABLE IF NOT EXISTS companies (
   PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+CREATE TABLE IF NOT EXISTS opdrachtgevers (
+  id           INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  name         VARCHAR(150) NOT NULL,
+  description  TEXT NULL,
+  website      VARCHAR(255) NULL,
+  email        VARCHAR(255) NULL,
+  phone        VARCHAR(30) NULL,
+  address      VARCHAR(255) NULL,
+  city         VARCHAR(100) NULL,
+  created_at   TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS contactpersonen (
+  id                INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  opdrachtgever_id  INT UNSIGNED NOT NULL,
+  first_name        VARCHAR(100) NOT NULL,
+  last_name         VARCHAR(100) NOT NULL,
+  function          VARCHAR(100) NULL,
+  email             VARCHAR(255) NULL,
+  phone             VARCHAR(30) NULL,
+  created_at        TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (id),
+  KEY idx_contactpersonen_opdrachtgever (opdrachtgever_id),
+  CONSTRAINT fk_contactpersonen_opdrachtgever
+    FOREIGN KEY (opdrachtgever_id) REFERENCES opdrachtgevers (id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
 CREATE TABLE IF NOT EXISTS assignments (
   id           INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  opdrachtgever_id INT UNSIGNED NULL,
   title        VARCHAR(200) NOT NULL,
   description  TEXT NULL,
   source_url   VARCHAR(500) NULL,
   posted_at    DATE NULL,
   scraped_at   TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (id),
-  UNIQUE KEY uq_assignments_source_url (source_url)
+  UNIQUE KEY uq_assignments_source_url (source_url),
+  KEY idx_assignments_opdrachtgever (opdrachtgever_id),
+  CONSTRAINT fk_assignments_opdrachtgever
+    FOREIGN KEY (opdrachtgever_id) REFERENCES opdrachtgevers (id) ON DELETE SET NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE IF NOT EXISTS tags (
@@ -63,30 +95,30 @@ CREATE TABLE IF NOT EXISTS assignment_claims (
   id             INT UNSIGNED NOT NULL AUTO_INCREMENT,
   assignment_id  INT UNSIGNED NOT NULL,
   user_id        INT UNSIGNED NOT NULL,
-  company_id     INT UNSIGNED NULL,
+  opdrachtnemer_id     INT UNSIGNED NULL,
   status         ENUM('claimed', 'assigned', 'completed') NOT NULL DEFAULT 'claimed',
   claimed_at     TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   assigned_at    TIMESTAMP NULL DEFAULT NULL,
   PRIMARY KEY (id),
   UNIQUE KEY uq_claims_assignment (assignment_id),
   KEY idx_claims_user (user_id),
-  KEY idx_claims_company (company_id),
+  KEY idx_claims_opdrachtnemer (opdrachtnemer_id),
   CONSTRAINT fk_claims_assignment
     FOREIGN KEY (assignment_id) REFERENCES assignments (id) ON DELETE CASCADE,
   CONSTRAINT fk_claims_user
     FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE,
-  CONSTRAINT fk_claims_company
-    FOREIGN KEY (company_id) REFERENCES companies (id) ON DELETE SET NULL
+  CONSTRAINT fk_claims_opdrachtnemer
+    FOREIGN KEY (opdrachtnemer_id) REFERENCES opdrachtnemers (id) ON DELETE SET NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS company_tags (
-  company_id  INT UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS opdrachtnemer_tags (
+  opdrachtnemer_id  INT UNSIGNED NOT NULL,
   tag_id      INT UNSIGNED NOT NULL,
-  PRIMARY KEY (company_id, tag_id),
-  KEY idx_company_tags_tag (tag_id),
-  CONSTRAINT fk_company_tags_company
-    FOREIGN KEY (company_id) REFERENCES companies (id) ON DELETE CASCADE,
-  CONSTRAINT fk_company_tags_tag
+  PRIMARY KEY (opdrachtnemer_id, tag_id),
+  KEY idx_opdrachtnemer_tags_tag (tag_id),
+  CONSTRAINT fk_opdrachtnemer_tags_opdrachtnemer
+    FOREIGN KEY (opdrachtnemer_id) REFERENCES opdrachtnemers (id) ON DELETE CASCADE,
+  CONSTRAINT fk_opdrachtnemer_tags_tag
     FOREIGN KEY (tag_id) REFERENCES tags (id) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 

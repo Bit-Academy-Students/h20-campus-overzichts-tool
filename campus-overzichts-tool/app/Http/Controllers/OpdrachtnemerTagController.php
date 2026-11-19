@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Company_Tags;
+use App\Models\OpdrachtnemerTag;
 use Illuminate\Http\Request;
 
-class Company_TagsController extends Controller
+class OpdrachtnemerTagController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -34,7 +34,7 @@ class Company_TagsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Company_Tags $company_Tags)
+    public function show(OpdrachtnemerTag $opdrachtnemerTag)
     {
         //
     }
@@ -42,7 +42,7 @@ class Company_TagsController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Company_Tags $company_Tags)
+    public function edit(OpdrachtnemerTag $opdrachtnemerTag)
     {
         //
     }
@@ -50,7 +50,7 @@ class Company_TagsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Company_Tags $company_Tags)
+    public function update(Request $request, OpdrachtnemerTag $opdrachtnemerTag)
     {
         //
     }
@@ -58,7 +58,7 @@ class Company_TagsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Company_Tags $company_Tags)
+    public function destroy(OpdrachtnemerTag $opdrachtnemerTag)
     {
         //
     }

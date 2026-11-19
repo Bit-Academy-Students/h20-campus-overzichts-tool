@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Assignment_Claims extends Model
+class AssignmentClaim extends Model
 {
     use HasFactory;
 
@@ -14,7 +14,7 @@ class Assignment_Claims extends Model
 
     public $timestamps = false;
 
-    protected $fillable = ['assignment_id', 'user_id', 'company_id', 'status', 'claimed_at', 'assigned_at'];
+    protected $fillable = ['assignment_id', 'user_id', 'opdrachtnemer_id', 'status', 'claimed_at', 'assigned_at'];
 
     protected function casts(): array
     {
@@ -34,8 +34,8 @@ class Assignment_Claims extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function company(): BelongsTo
+    public function opdrachtnemer(): BelongsTo
     {
-        return $this->belongsTo(Companies::class, 'company_id');
+        return $this->belongsTo(Opdrachtnemer::class, 'opdrachtnemer_id');
     }
 }

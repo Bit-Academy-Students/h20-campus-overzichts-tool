@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Assignment_Claims;
+use App\Models\AssignmentClaim;
 use Illuminate\Http\Request;
 
-class Assignment_ClaimsController extends Controller
+class AssignmentClaimController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -34,7 +34,7 @@ class Assignment_ClaimsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Assignment_Claims $assignment_Claims)
+    public function show(AssignmentClaim $assignmentClaim)
     {
         //
     }
@@ -42,7 +42,7 @@ class Assignment_ClaimsController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Assignment_Claims $assignment_Claims)
+    public function edit(AssignmentClaim $assignmentClaim)
     {
         //
     }
@@ -50,7 +50,7 @@ class Assignment_ClaimsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Assignment_Claims $assignment_Claims)
+    public function update(Request $request, AssignmentClaim $assignmentClaim)
     {
         //
     }
@@ -58,7 +58,7 @@ class Assignment_ClaimsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Assignment_Claims $assignment_Claims)
+    public function destroy(AssignmentClaim $assignmentClaim)
     {
         //
     }

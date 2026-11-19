@@ -45,7 +45,7 @@ class User extends Authenticatable
 
     public function claims(): HasMany
     {
-        return $this->hasMany(Assignment_Claims::class, 'user_id');
+        return $this->hasMany(AssignmentClaim::class, 'user_id');
     }
 
     public function favorites(): BelongsToMany

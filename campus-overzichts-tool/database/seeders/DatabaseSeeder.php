@@ -2,10 +2,12 @@
 
 namespace Database\Seeders;
 
-use App\Models\Assignment_Claims;
+use App\Models\AssignmentClaim;
 use App\Models\Assignments;
-use App\Models\Companies;
+use App\Models\Contactpersoon;
 use App\Models\Keywords;
+use App\Models\Opdrachtgever;
+use App\Models\Opdrachtnemer;
 use App\Models\Sources;
 use App\Models\Tags;
 use App\Models\User;
@@ -37,23 +39,29 @@ class DatabaseSeeder extends Seeder
         Sources::factory(3)->create();
         Sources::factory()->inactive()->create();
 
-        $companies = Companies::factory(15)->create();
-        $companies->each(fn (Companies $c) => $c->tags()->attach($tags->random(random_int(2, 4))->pluck('id')));
+        $opdrachtnemers = Opdrachtnemer::factory(15)->create();
+        $opdrachtnemers->each(fn (Opdrachtnemer $o) => $o->tags()->attach($tags->random(random_int(2, 4))->pluck('id')));
 
-        $assignments = Assignments::factory(30)->create();
+        $opdrachtgevers = Opdrachtgever::factory(8)->create();
+        $opdrachtgevers->each(fn (Opdrachtgever $o) => Contactpersoon::factory(random_int(1, 3))->create(['opdrachtgever_id' => $o->id]));
+
+        $assignments = Assignments::factory(30)->make()->each(function (Assignments $a) use ($opdrachtgevers) {
+            $a->opdrachtgever_id = $opdrachtgevers->random()->id;
+            $a->save();
+        });
         $assignments->each(fn (Assignments $a) => $a->tags()->attach($tags->random(random_int(1, 3))->pluck('id')));
 
         // Een deel van de opdrachten is geclaimd, deels al aan een bedrijf toegewezen.
-        $assignments->shuffle()->take(12)->each(function (Assignments $a, int $i) use ($users, $companies) {
-            $claim = Assignment_Claims::factory()->state([
+        $assignments->shuffle()->take(12)->each(function (Assignments $a, int $i) use ($users, $opdrachtnemers) {
+            $claim = AssignmentClaim::factory()->state([
                 'assignment_id' => $a->id,
                 'user_id' => $users->random()->id,
             ]);
 
             match (true) {
                 $i < 5 => $claim->create(),
-                $i < 9 => $claim->state(['company_id' => $companies->random()->id, 'status' => 'assigned', 'assigned_at' => now()])->create(),
-                default => $claim->state(['company_id' => $companies->random()->id, 'status' => 'completed', 'assigned_at' => now()->subDays(3)])->create(),
+                $i < 9 => $claim->state(['opdrachtnemer_id' => $opdrachtnemers->random()->id, 'status' => 'assigned', 'assigned_at' => now()])->create(),
+                default => $claim->state(['opdrachtnemer_id' => $opdrachtnemers->random()->id, 'status' => 'completed', 'assigned_at' => now()->subDays(3)])->create(),
             };
         });
 
