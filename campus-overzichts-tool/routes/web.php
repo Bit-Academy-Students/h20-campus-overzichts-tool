@@ -17,3 +17,11 @@ Route::get('/login', function () {
 Route::get('/map', function () {
     return view('waterlandmap');
 })->name('waterlandmap');
+
+Route::get('/overview', function () {
+    return view('overview');
+})->name('overview');
+
+Route::get('/signup', function () {
+    return view('signup');
+})->name('signup');
