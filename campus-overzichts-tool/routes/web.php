@@ -23,5 +23,5 @@ Route::get('/overview', function () {
 })->name('overview');
 
 Route::get('/signup', function () {
-    return view('signup');
+    return view('signuppage');
 })->name('signup');
