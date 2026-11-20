@@ -1,0 +1,27 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\Pivot;
+
+class Assignment_Tags extends Pivot
+{
+    protected $table = 'assignment_tags';
+
+    public $timestamps = false;
+
+    public $incrementing = false;
+
+    protected $fillable = ['assignment_id', 'tag_id'];
+
+    public function assignment(): BelongsTo
+    {
+        return $this->belongsTo(Assignments::class, 'assignment_id');
+    }
+
+    public function tag(): BelongsTo
+    {
+        return $this->belongsTo(Tags::class, 'tag_id');
+    }
+}
