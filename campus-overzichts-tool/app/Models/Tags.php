@@ -21,8 +21,13 @@ class Tags extends Model
         return $this->belongsToMany(Assignments::class, 'assignment_tags', 'tag_id', 'assignment_id');
     }
 
-    public function opdrachtnemers(): BelongsToMany
+    public function contractors(): BelongsToMany
     {
-        return $this->belongsToMany(Opdrachtnemer::class, 'opdrachtnemer_tags', 'tag_id', 'opdrachtnemer_id');
+        return $this->belongsToMany(Contractor::class, 'contractor_tags', 'tag_id', 'contractor_id');
+    }
+
+    public function clients(): BelongsToMany
+    {
+        return $this->belongsToMany(Client::class, 'client_tags', 'tag_id', 'client_id');
     }
 }

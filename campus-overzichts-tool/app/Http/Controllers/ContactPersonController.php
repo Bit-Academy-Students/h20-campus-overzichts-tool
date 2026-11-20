@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Contactpersoon;
+use App\Models\ContactPerson;
 use Illuminate\Http\Request;
 
-class ContactpersoonController extends Controller
+class ContactPersonController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -34,7 +34,7 @@ class ContactpersoonController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Contactpersoon $contactpersoon)
+    public function show(ContactPerson $contactPerson)
     {
         //
     }
@@ -42,7 +42,7 @@ class ContactpersoonController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Contactpersoon $contactpersoon)
+    public function edit(ContactPerson $contactPerson)
     {
         //
     }
@@ -50,7 +50,7 @@ class ContactpersoonController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Contactpersoon $contactpersoon)
+    public function update(Request $request, ContactPerson $contactPerson)
     {
         //
     }
@@ -58,7 +58,7 @@ class ContactpersoonController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Contactpersoon $contactpersoon)
+    public function destroy(ContactPerson $contactPerson)
     {
         //
     }

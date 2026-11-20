@@ -7,11 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Opdrachtnemer extends Model
+class Contractor extends Model
 {
     use HasFactory;
 
-    protected $table = 'opdrachtnemers';
+    protected $table = 'contractors';
 
     public const UPDATED_AT = null;
 
@@ -19,11 +19,16 @@ class Opdrachtnemer extends Model
 
     public function tags(): BelongsToMany
     {
-        return $this->belongsToMany(Tags::class, 'opdrachtnemer_tags', 'opdrachtnemer_id', 'tag_id');
+        return $this->belongsToMany(Tags::class, 'contractor_tags', 'contractor_id', 'tag_id');
+    }
+
+    public function contactPersons(): HasMany
+    {
+        return $this->hasMany(ContactPerson::class, 'contractor_id');
     }
 
     public function claims(): HasMany
     {
-        return $this->hasMany(AssignmentClaim::class, 'opdrachtnemer_id');
+        return $this->hasMany(AssignmentClaim::class, 'contractor_id');
     }
 }

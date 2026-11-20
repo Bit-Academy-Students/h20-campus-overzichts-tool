@@ -16,6 +16,8 @@ class AssignmentsFactory extends Factory
             'title' => rtrim(fake()->sentence(fake()->numberBetween(3, 7)), '.'),
             'description' => fake()->optional(0.9)->paragraphs(2, true),
             'source_url' => fake()->unique()->url(),
+            'status' => 'new',
+            'priority' => fake()->randomElement(Assignments::PRIORITIES),
             'posted_at' => fake()->optional(0.9)->dateTimeBetween('-3 months')?->format('Y-m-d'),
             'scraped_at' => now(),
         ];

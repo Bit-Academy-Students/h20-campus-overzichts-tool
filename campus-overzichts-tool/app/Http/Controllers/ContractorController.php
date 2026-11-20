@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Opdrachtnemer;
+use App\Models\Contractor;
 use Illuminate\Http\Request;
 
-class OpdrachtnemerController extends Controller
+class ContractorController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -34,7 +34,7 @@ class OpdrachtnemerController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Opdrachtnemer $opdrachtnemers)
+    public function show(Contractor $contractors)
     {
         //
     }
@@ -42,7 +42,7 @@ class OpdrachtnemerController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Opdrachtnemer $opdrachtnemers)
+    public function edit(Contractor $contractors)
     {
         //
     }
@@ -50,7 +50,7 @@ class OpdrachtnemerController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Opdrachtnemer $opdrachtnemers)
+    public function update(Request $request, Contractor $contractors)
     {
         //
     }
@@ -58,7 +58,7 @@ class OpdrachtnemerController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Opdrachtnemer $opdrachtnemers)
+    public function destroy(Contractor $contractors)
     {
         //
     }

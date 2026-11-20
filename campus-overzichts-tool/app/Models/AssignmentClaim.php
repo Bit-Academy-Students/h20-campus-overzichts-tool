@@ -14,7 +14,7 @@ class AssignmentClaim extends Model
 
     public $timestamps = false;
 
-    protected $fillable = ['assignment_id', 'user_id', 'opdrachtnemer_id', 'status', 'claimed_at', 'assigned_at'];
+    protected $fillable = ['assignment_id', 'user_id', 'contractor_id', 'status', 'claimed_at', 'assigned_at'];
 
     protected function casts(): array
     {
@@ -34,8 +34,8 @@ class AssignmentClaim extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function opdrachtnemer(): BelongsTo
+    public function contractor(): BelongsTo
     {
-        return $this->belongsTo(Opdrachtnemer::class, 'opdrachtnemer_id');
+        return $this->belongsTo(Contractor::class, 'contractor_id');
     }
 }

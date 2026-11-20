@@ -5,19 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 
-class OpdrachtnemerTag extends Pivot
+class ContractorTag extends Pivot
 {
-    protected $table = 'opdrachtnemer_tags';
+    protected $table = 'contractor_tags';
 
     public $timestamps = false;
 
     public $incrementing = false;
 
-    protected $fillable = ['opdrachtnemer_id', 'tag_id'];
+    protected $fillable = ['contractor_id', 'tag_id'];
 
-    public function opdrachtnemer(): BelongsTo
+    public function contractor(): BelongsTo
     {
-        return $this->belongsTo(Opdrachtnemer::class, 'opdrachtnemer_id');
+        return $this->belongsTo(Contractor::class, 'contractor_id');
     }
 
     public function tag(): BelongsTo

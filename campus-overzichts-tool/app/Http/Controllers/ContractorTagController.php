@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\OpdrachtnemerTag;
+use App\Models\ContractorTag;
 use Illuminate\Http\Request;
 
-class OpdrachtnemerTagController extends Controller
+class ContractorTagController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -34,7 +34,7 @@ class OpdrachtnemerTagController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(OpdrachtnemerTag $opdrachtnemerTag)
+    public function show(ContractorTag $contractorTag)
     {
         //
     }
@@ -42,7 +42,7 @@ class OpdrachtnemerTagController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(OpdrachtnemerTag $opdrachtnemerTag)
+    public function edit(ContractorTag $contractorTag)
     {
         //
     }
@@ -50,7 +50,7 @@ class OpdrachtnemerTagController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, OpdrachtnemerTag $opdrachtnemerTag)
+    public function update(Request $request, ContractorTag $contractorTag)
     {
         //
     }
@@ -58,7 +58,7 @@ class OpdrachtnemerTagController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(OpdrachtnemerTag $opdrachtnemerTag)
+    public function destroy(ContractorTag $contractorTag)
     {
         //
     }

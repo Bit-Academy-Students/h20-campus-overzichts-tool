@@ -12,11 +12,15 @@ class Assignments extends Model
 {
     use HasFactory;
 
+    public const STATUSES = ['new', 'in_review', 'accepted', 'rejected', 'assigned'];
+
+    public const PRIORITIES = ['high', 'medium', 'low'];
+
     protected $table = 'assignments';
 
     public $timestamps = false;
 
-    protected $fillable = ['opdrachtgever_id', 'title', 'description', 'source_url', 'posted_at', 'scraped_at'];
+    protected $fillable = ['client_id', 'contact_person_id', 'title', 'description', 'source_url', 'status', 'priority', 'posted_at', 'scraped_at'];
 
     protected function casts(): array
     {
@@ -26,9 +30,14 @@ class Assignments extends Model
         ];
     }
 
-    public function opdrachtgever(): BelongsTo
+    public function client(): BelongsTo
     {
-        return $this->belongsTo(Opdrachtgever::class, 'opdrachtgever_id');
+        return $this->belongsTo(Client::class, 'client_id');
+    }
+
+    public function contactPerson(): BelongsTo
+    {
+        return $this->belongsTo(ContactPerson::class, 'contact_person_id');
     }
 
     public function tags(): BelongsToMany

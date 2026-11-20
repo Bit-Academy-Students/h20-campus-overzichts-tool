@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Opdrachtgever;
+use App\Models\Client;
 use Illuminate\Http\Request;
 
-class OpdrachtgeverController extends Controller
+class ClientController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -34,7 +34,7 @@ class OpdrachtgeverController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Opdrachtgever $opdrachtgever)
+    public function show(Client $client)
     {
         //
     }
@@ -42,7 +42,7 @@ class OpdrachtgeverController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Opdrachtgever $opdrachtgever)
+    public function edit(Client $client)
     {
         //
     }
@@ -50,7 +50,7 @@ class OpdrachtgeverController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Opdrachtgever $opdrachtgever)
+    public function update(Request $request, Client $client)
     {
         //
     }
@@ -58,7 +58,7 @@ class OpdrachtgeverController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Opdrachtgever $opdrachtgever)
+    public function destroy(Client $client)
     {
         //
     }

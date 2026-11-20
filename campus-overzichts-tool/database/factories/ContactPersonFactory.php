@@ -2,24 +2,34 @@
 
 namespace Database\Factories;
 
-use App\Models\Contactpersoon;
-use App\Models\Opdrachtgever;
+use App\Models\Client;
+use App\Models\ContactPerson;
+use App\Models\Contractor;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends Factory<Contactpersoon>
+ * @extends Factory<ContactPerson>
  */
-class ContactpersoonFactory extends Factory
+class ContactPersonFactory extends Factory
 {
     public function definition(): array
     {
         return [
-            'opdrachtgever_id' => Opdrachtgever::factory(),
+            'client_id' => Client::factory(),
+            'contractor_id' => null,
             'first_name' => fake()->firstName(),
             'last_name' => fake()->lastName(),
-            'function' => fake()->optional(0.7)->jobTitle(),
+            'job_title' => fake()->optional(0.7)->jobTitle(),
             'email' => fake()->optional(0.9)->safeEmail(),
             'phone' => fake()->optional(0.7)->phoneNumber(),
         ];
+    }
+
+    public function forContractor(?Contractor $contractor = null): static
+    {
+        return $this->state(fn () => [
+            'client_id' => null,
+            'contractor_id' => $contractor?->id ?? Contractor::factory(),
+        ]);
     }
 }
