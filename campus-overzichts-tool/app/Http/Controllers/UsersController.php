@@ -1,5 +1,7 @@
 <?php
 
+// user controller api 
+//thing in docs in endpoints find je details over alle endpoints en hoe je ze moet gebruiken
 namespace App\Http\Controllers;
 
 use App\Models\User;
@@ -9,17 +11,14 @@ use Illuminate\Validation\Rule;
 
 class UsersController extends Controller
 {
-    /**
-     * GET /api/users - lijst van alle users.
-     */
+    // GET /api/users - lijst van alle users.
     public function index(): JsonResponse
     {
         return response()->json(User::all());
     }
 
-    /**
-     * POST /api/users - nieuwe user aanmaken.
-     */
+
+    // POST /api/users - nieuwe user aanmaken.
     public function store(Request $request): JsonResponse
     {
         $data = $request->validate([
@@ -29,25 +28,18 @@ class UsersController extends Controller
             'password' => ['required', 'string', 'min:8'],
         ]);
 
-        // Nieuwe users starten altijd als 'pending' tot een admin ze goedkeurt.
-        // De rol wordt bewust niet uit de request gehaald.
-        // Het wachtwoord wordt automatisch gehasht door de 'hashed' cast in het User-model.
         $user = User::create($data + ['role' => 'pending']);
 
         return response()->json($user, 201);
     }
 
-    /**
-     * GET /api/users/{user} - één user.
-     */
+    // GET /api/users/{user} - één user.
     public function show(User $user): JsonResponse
     {
         return response()->json($user);
     }
 
-    /**
-     * PUT/PATCH /api/users/{user} - user wijzigen.
-     */
+    // PUT/PATCH /api/users/{user} - user wijzigen.
     public function update(Request $request, User $user): JsonResponse
     {
         $data = $request->validate([
@@ -55,7 +47,6 @@ class UsersController extends Controller
             'last_name' => ['sometimes', 'string', 'max:100'],
             'email' => ['sometimes', 'email', 'max:255', Rule::unique('users', 'email')->ignore($user->id)],
             'password' => ['sometimes', 'string', 'min:8'],
-            // Hier keurt een admin een user goed (pending -> municipality/admin).
             'role' => ['sometimes', Rule::in(['pending', 'municipality', 'admin'])],
         ]);
 
@@ -64,9 +55,7 @@ class UsersController extends Controller
         return response()->json($user);
     }
 
-    /**
-     * DELETE /api/users/{user} - user verwijderen.
-     */
+    // DELETE /api/users/{user} - user verwijderen.
     public function destroy(User $user): JsonResponse
     {
         $user->delete();
