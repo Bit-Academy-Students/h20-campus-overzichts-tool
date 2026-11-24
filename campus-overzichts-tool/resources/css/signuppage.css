@@ -30,6 +30,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
 }
 
 #titlehead {
@@ -117,6 +118,7 @@ input:hover {
     flex-direction: column;
     align-items: start;
     width: 100%;
+    gap: 8px;
 }
 
 .vertAlign {
@@ -128,4 +130,38 @@ input:hover {
 
 .vertAlign > input {
     width: 100%;
+}
+
+#form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+#createAccount {
+    transition: all 0.3s ease;
+    color: white;
+    background-color: #E53362;
+    border: crimson 1px solid;
+    padding: 5px 15px 5px 15px;
+    border-radius: 3px;
+}
+
+#createAccount:hover {
+    padding: 5px 25px 5px 25px;
+}
+
+img#purmerend {
+    max-height: 100px;
+}
+
+img#techCampus {
+    max-height: 120px;
+}
+
+#trademark {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }

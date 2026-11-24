@@ -55,10 +55,17 @@
                     <input type="password" name="password">
                 </div>
             </div>
-            <label for="remember">Remember me:</label>
-            <input type="checkbox" name="remember">
+            <div>
+                <label for="remember">Remember me:</label>
+                <input type="checkbox" name="remember">
+            </div>
             <button id="createAccount">Create Account</button>
+            <p>Already have an account? <span><a href="{{ route('loginpage') }}">Go to Login</a></span></p>
         </form>
+        <div id="trademark">
+            <img src="{{ asset('icons/purmerendLogo.svg') }}" alt="purmerend" id="purmerend">
+            <img src="{{ asset('images/ETC logo zwart.png') }}" alt="techCampus" id="techCampus">
+        </div>
     </div>
 </body>
 
