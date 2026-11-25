@@ -38,28 +38,28 @@
             <div id="namealign">
                 <div class="align">
                     <label for="name">Name:</label>
-                    <input type="text" name="name">
+                    <input type="text" name="name" id="firstname">
                 </div>
                 <div class="align">
                     <label for="surname">Last Name:</label>
-                    <input type="text" name="surname">
+                    <input type="text" name="surname" id="surname">
                 </div>
             </div>
             <div id="emailAlign">
                 <div class="vertAlign">
                     <label for="email">E-Mail:</label>
-                    <input type="email" name="email">
+                    <input type="email" name="email" id="email">
                 </div>
                 <div class="vertAlign">
                     <label for="password">Password:</label>
-                    <input type="password" name="password">
+                    <input type="password" name="password" id="password">
                 </div>
             </div>
             <div>
                 <label for="remember">Remember me:</label>
                 <input type="checkbox" name="remember">
             </div>
-            <button id="createAccount">Create Account</button>
+            <button id="createAccount" type="button">Create Account</button>
             <p>Already have an account? <span><a href="{{ route('loginpage') }}">Go to Login</a></span></p>
         </form>
         <div id="trademark">
