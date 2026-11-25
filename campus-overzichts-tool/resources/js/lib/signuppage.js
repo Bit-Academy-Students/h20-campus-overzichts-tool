@@ -22,17 +22,18 @@ async function createAccount() {
     checkEmailJSON.forEach(account => {
         if (account.email === eMail) {
             window.alert("Account with email already exists");
+            return("null");
         }
     });
 
     const constructJSON = {
-        first_Name: firstName,
-        last_Name: lastName,
+        first_name: firstName,
+        last_name: lastName,
         email: eMail,
         password: passWord,
     }
     
-    fetch("/api/users", {
+    await fetch("/api/users", {
         method: "POST",
         headers: {
             "Accept": "application/json",
