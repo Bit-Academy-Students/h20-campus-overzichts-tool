@@ -31,10 +31,7 @@ return new class extends Migration
             $table->string('city', 100)->nullable();
             $table->timestamp('created_at')->useCurrent();
         });
-
-        // Een contactpersoon hoort bij precies één client OF één contractor.
-        // MySQL staat geen CHECK toe op kolommen met een CASCADE foreign key,
-        // daarom wordt "precies één van de twee" in het model ContactPerson afgedwongen.
+        
         Schema::create('contact_persons', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('client_id')->nullable()->index('idx_contact_persons_client');

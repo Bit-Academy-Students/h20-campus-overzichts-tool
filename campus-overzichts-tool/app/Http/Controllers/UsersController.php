@@ -1,65 +1,65 @@
 <?php
 
+// user controller api 
+//thing in docs in endpoints find je details over alle endpoints en hoe je ze moet gebruiken
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class UsersController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    // GET /api/users - lijst van alle users.
+    public function index(): JsonResponse
     {
-        //
+        return response()->json(User::all());
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+
+    // POST /api/users - nieuwe user aanmaken.
+    public function store(Request $request): JsonResponse
     {
-        //
+        $data = $request->validate([
+            'first_name' => ['required', 'string', 'max:100'],
+            'last_name' => ['required', 'string', 'max:100'],
+            'email' => ['required', 'email', 'max:255', 'unique:users,email'],
+            'password' => ['required', 'string', 'min:8'],
+        ]);
+
+        $user = User::create($data + ['role' => 'pending']);
+
+        return response()->json($user, 201);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    // GET /api/users/{user} - één user.
+    public function show(User $user): JsonResponse
     {
-        //
+        return response()->json($user);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(User $user)
+    // PUT/PATCH /api/users/{user} - user wijzigen.
+    public function update(Request $request, User $user): JsonResponse
     {
-        //
+        $data = $request->validate([
+            'first_name' => ['sometimes', 'string', 'max:100'],
+            'last_name' => ['sometimes', 'string', 'max:100'],
+            'email' => ['sometimes', 'email', 'max:255', Rule::unique('users', 'email')->ignore($user->id)],
+            'password' => ['sometimes', 'string', 'min:8'],
+            'role' => ['sometimes', Rule::in(['pending', 'municipality', 'admin'])],
+        ]);
+
+        $user->update($data);
+
+        return response()->json($user);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(User $user)
+    // DELETE /api/users/{user} - user verwijderen.
+    public function destroy(User $user): JsonResponse
     {
-        //
-    }
+        $user->delete();
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, User $user)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(User $user)
-    {
-        //
+        return response()->json(null, 204);
     }
 }
