@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 
-class Assignment_Favorites extends Pivot
+class AssignmentFavorite extends Pivot
 {
     protected $table = 'assignment_favorites';
 
@@ -22,6 +22,6 @@ class Assignment_Favorites extends Pivot
 
     public function assignment(): BelongsTo
     {
-        return $this->belongsTo(Assignments::class, 'assignment_id');
+        return $this->belongsTo(Assignment::class, 'assignment_id');
     }
 }

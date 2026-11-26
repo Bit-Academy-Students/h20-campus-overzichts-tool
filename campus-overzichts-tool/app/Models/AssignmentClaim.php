@@ -26,7 +26,7 @@ class AssignmentClaim extends Model
 
     public function assignment(): BelongsTo
     {
-        return $this->belongsTo(Assignments::class, 'assignment_id');
+        return $this->belongsTo(Assignment::class, 'assignment_id');
     }
 
     public function user(): BelongsTo

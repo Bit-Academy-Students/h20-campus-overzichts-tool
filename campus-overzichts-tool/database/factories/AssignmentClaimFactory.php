@@ -3,7 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\AssignmentClaim;
-use App\Models\Assignments;
+use App\Models\Assignment;
 use App\Models\Contractor;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -16,7 +16,7 @@ class AssignmentClaimFactory extends Factory
     public function definition(): array
     {
         return [
-            'assignment_id' => Assignments::factory(),
+            'assignment_id' => Assignment::factory(),
             'user_id' => User::factory(),
             'contractor_id' => null,
             'status' => 'claimed',

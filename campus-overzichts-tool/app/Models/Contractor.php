@@ -19,7 +19,7 @@ class Contractor extends Model
 
     public function tags(): BelongsToMany
     {
-        return $this->belongsToMany(Tags::class, 'contractor_tags', 'contractor_id', 'tag_id');
+        return $this->belongsToMany(Tag::class, 'contractor_tags', 'contractor_id', 'tag_id');
     }
 
     public function contactPersons(): HasMany

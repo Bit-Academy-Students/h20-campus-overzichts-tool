@@ -2,18 +2,18 @@
 
 namespace Database\Factories;
 
-use App\Models\Keywords;
+use App\Models\Tag;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends Factory<Keywords>
+ * @extends Factory<Tag>
  */
-class KeywordsFactory extends Factory
+class TagFactory extends Factory
 {
     public function definition(): array
     {
         return [
-            'word' => fake()->unique()->word(),
+            'name' => fake()->unique()->word(),
         ];
     }
 }

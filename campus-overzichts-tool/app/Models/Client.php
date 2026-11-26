@@ -19,7 +19,7 @@ class Client extends Model
 
     public function tags(): BelongsToMany
     {
-        return $this->belongsToMany(Tags::class, 'client_tags', 'client_id', 'tag_id');
+        return $this->belongsToMany(Tag::class, 'client_tags', 'client_id', 'tag_id');
     }
 
     public function contactPersons(): HasMany
@@ -29,6 +29,6 @@ class Client extends Model
 
     public function assignments(): HasMany
     {
-        return $this->hasMany(Assignments::class, 'client_id');
+        return $this->hasMany(Assignment::class, 'client_id');
     }
 }
