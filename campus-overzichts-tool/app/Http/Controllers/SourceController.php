@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Keywords;
+use App\Models\Source;
 use Illuminate\Http\Request;
 
-class KeywordsController extends Controller
+class SourceController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -34,7 +34,7 @@ class KeywordsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Keywords $keywords)
+    public function show(Source $source)
     {
         //
     }
@@ -42,7 +42,7 @@ class KeywordsController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Keywords $keywords)
+    public function edit(Source $source)
     {
         //
     }
@@ -50,7 +50,7 @@ class KeywordsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Keywords $keywords)
+    public function update(Request $request, Source $source)
     {
         //
     }
@@ -58,7 +58,7 @@ class KeywordsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Keywords $keywords)
+    public function destroy(Source $source)
     {
         //
     }

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
-class Assignments extends Model
+class Assignment extends Model
 {
     use HasFactory;
 
@@ -42,7 +42,7 @@ class Assignments extends Model
 
     public function tags(): BelongsToMany
     {
-        return $this->belongsToMany(Tags::class, 'assignment_tags', 'assignment_id', 'tag_id');
+        return $this->belongsToMany(Tag::class, 'assignment_tags', 'assignment_id', 'tag_id');
     }
 
     public function claim(): HasOne

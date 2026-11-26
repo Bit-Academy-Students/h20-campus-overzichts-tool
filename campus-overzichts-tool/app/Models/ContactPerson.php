@@ -40,6 +40,6 @@ class ContactPerson extends Model
 
     public function assignments(): HasMany
     {
-        return $this->hasMany(Assignments::class, 'contact_person_id');
+        return $this->hasMany(Assignment::class, 'contact_person_id');
     }
 }
