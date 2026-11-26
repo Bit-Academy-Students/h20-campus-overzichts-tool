@@ -38,7 +38,7 @@ async function createAccount() {
         password: passWord,
     }
 
-    await fetch("/api/users", {
+    const res = await fetch("/api/users", {
         method: "POST",
         headers: {
             "Accept": "application/json",
@@ -46,4 +46,9 @@ async function createAccount() {
         },
         body: JSON.stringify(constructJSON),
     });
+
+    if (res.status == 201) {
+        const url = await res.json();
+        window.location.replace(url.redirect);
+    }
 }
