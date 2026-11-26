@@ -15,6 +15,15 @@ Stuur altijd `Accept: application/json` mee.
 
 Fouten: `404` bestaat niet, `422` validatie mislukt.
 
+## Login
+
+| Methode | URL | Doel |
+|---|---|---|
+| POST | `/login` | inloggen (staat in `web.php`, niet onder `/api`) |
+
+Body: `email`, `password`, optioneel `remember`. Stuur `X-CSRF-TOKEN` mee.
+Antwoord: `200` met `{ "redirect": "..." }`, of `422` bij foute gegevens.
+
 ## Nog te doen
 
 Assignments, AssignmentClaim, Assignment_Tags, Client, ClientTag, ContactPerson, Contractor, ContractorTag, Keywords, Sources, Tags.
