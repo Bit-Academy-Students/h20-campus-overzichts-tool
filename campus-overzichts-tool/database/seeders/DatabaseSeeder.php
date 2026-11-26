@@ -3,13 +3,13 @@
 namespace Database\Seeders;
 
 use App\Models\AssignmentClaim;
-use App\Models\Assignments;
+use App\Models\Assignment;
 use App\Models\Client;
 use App\Models\ContactPerson;
 use App\Models\Contractor;
-use App\Models\Keywords;
-use App\Models\Sources;
-use App\Models\Tags;
+use App\Models\Keyword;
+use App\Models\Source;
+use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -31,13 +31,13 @@ class DatabaseSeeder extends Seeder
         $users = User::factory(4)->create()->push($admin, $test);
 
         $tags = collect(['ICT', 'Webdesign', 'Bouw', 'Energie', 'Zorg', 'Onderwijs', 'Mobiliteit', 'Groen', 'Data', 'Duurzaamheid'])
-            ->map(fn (string $name) => Tags::create(['name' => $name]));
+            ->map(fn (string $name) => Tag::create(['name' => $name]));
 
         collect(['aanbesteding', 'opdracht', 'gemeente', 'inschrijving', 'offerte'])
-            ->each(fn (string $word) => Keywords::create(['word' => $word]));
+            ->each(fn (string $word) => Keyword::create(['word' => $word]));
 
-        Sources::factory(3)->create();
-        Sources::factory()->inactive()->create();
+        Source::factory(3)->create();
+        Source::factory()->inactive()->create();
 
         $contractors = Contractor::factory(15)->create();
         $contractors->each(function (Contractor $c) use ($tags) {
@@ -52,18 +52,18 @@ class DatabaseSeeder extends Seeder
         });
 
         // Elke opdracht hoort bij een client; de contactpersoon is een van de contactpersonen van die client.
-        $assignments = Assignments::factory(30)->make()->each(function (Assignments $a) use ($clients) {
+        $assignments = Assignment::factory(30)->make()->each(function (Assignment $a) use ($clients) {
             $client = $clients->random();
             $a->client_id = $client->id;
             $a->contact_person_id = $client->contactPersons()->inRandomOrder()->value('id');
             $a->status = fake()->randomElement(['new', 'in_review', 'accepted', 'rejected']);
             $a->save();
         });
-        $assignments->each(fn (Assignments $a) => $a->tags()->attach($tags->random(random_int(1, 3))->pluck('id')));
+        $assignments->each(fn (Assignment $a) => $a->tags()->attach($tags->random(random_int(1, 3))->pluck('id')));
 
         // Een deel van de opdrachten is geclaimd, deels al aan een contractor toegewezen.
         // De status van de opdracht volgt de claim: geclaimd = in_review, toegewezen/afgerond = assigned.
-        $assignments->shuffle()->take(12)->each(function (Assignments $a, int $i) use ($users, $contractors) {
+        $assignments->shuffle()->take(12)->each(function (Assignment $a, int $i) use ($users, $contractors) {
             $claim = AssignmentClaim::factory()->state([
                 'assignment_id' => $a->id,
                 'user_id' => $users->random()->id,

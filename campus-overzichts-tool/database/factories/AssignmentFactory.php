@@ -2,13 +2,13 @@
 
 namespace Database\Factories;
 
-use App\Models\Assignments;
+use App\Models\Assignment;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends Factory<Assignments>
+ * @extends Factory<Assignment>
  */
-class AssignmentsFactory extends Factory
+class AssignmentFactory extends Factory
 {
     public function definition(): array
     {
@@ -17,7 +17,7 @@ class AssignmentsFactory extends Factory
             'description' => fake()->optional(0.9)->paragraphs(2, true),
             'source_url' => fake()->unique()->url(),
             'status' => 'new',
-            'priority' => fake()->randomElement(Assignments::PRIORITIES),
+            'priority' => fake()->randomElement(Assignment::PRIORITIES),
             'posted_at' => fake()->optional(0.9)->dateTimeBetween('-3 months')?->format('Y-m-d'),
             'scraped_at' => now(),
         ];

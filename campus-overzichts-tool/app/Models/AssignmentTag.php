@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 
-class Assignment_Tags extends Pivot
+class AssignmentTag extends Pivot
 {
     protected $table = 'assignment_tags';
 
@@ -17,11 +17,11 @@ class Assignment_Tags extends Pivot
 
     public function assignment(): BelongsTo
     {
-        return $this->belongsTo(Assignments::class, 'assignment_id');
+        return $this->belongsTo(Assignment::class, 'assignment_id');
     }
 
     public function tag(): BelongsTo
     {
-        return $this->belongsTo(Tags::class, 'tag_id');
+        return $this->belongsTo(Tag::class, 'tag_id');
     }
 }

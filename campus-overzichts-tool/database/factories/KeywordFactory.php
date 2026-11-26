@@ -2,13 +2,13 @@
 
 namespace Database\Factories;
 
-use App\Models\Keywords;
+use App\Models\Keyword;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends Factory<Keywords>
+ * @extends Factory<Keyword>
  */
-class KeywordsFactory extends Factory
+class KeywordFactory extends Factory
 {
     public function definition(): array
     {

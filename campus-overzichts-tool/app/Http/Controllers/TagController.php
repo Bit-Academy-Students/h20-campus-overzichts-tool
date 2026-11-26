@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Tags;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 
-class TagsController extends Controller
+class TagController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -34,7 +34,7 @@ class TagsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Tags $tags)
+    public function show(Tag $tag)
     {
         //
     }
@@ -42,7 +42,7 @@ class TagsController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Tags $tags)
+    public function edit(Tag $tag)
     {
         //
     }
@@ -50,7 +50,7 @@ class TagsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Tags $tags)
+    public function update(Request $request, Tag $tag)
     {
         //
     }
@@ -58,7 +58,7 @@ class TagsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Tags $tags)
+    public function destroy(Tag $tag)
     {
         //
     }

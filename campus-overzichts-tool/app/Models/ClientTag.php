@@ -22,6 +22,6 @@ class ClientTag extends Pivot
 
     public function tag(): BelongsTo
     {
-        return $this->belongsTo(Tags::class, 'tag_id');
+        return $this->belongsTo(Tag::class, 'tag_id');
     }
 }

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Assignment_Tags;
+use App\Models\AssignmentTag;
 use Illuminate\Http\Request;
 
-class Assignment_TagsController extends Controller
+class AssignmentTagController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -34,7 +34,7 @@ class Assignment_TagsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Assignment_Tags $assignment_Tags)
+    public function show(AssignmentTag $assignmentTag)
     {
         //
     }
@@ -42,7 +42,7 @@ class Assignment_TagsController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Assignment_Tags $assignment_Tags)
+    public function edit(AssignmentTag $assignmentTag)
     {
         //
     }
@@ -50,7 +50,7 @@ class Assignment_TagsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Assignment_Tags $assignment_Tags)
+    public function update(Request $request, AssignmentTag $assignmentTag)
     {
         //
     }
@@ -58,7 +58,7 @@ class Assignment_TagsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Assignment_Tags $assignment_Tags)
+    public function destroy(AssignmentTag $assignmentTag)
     {
         //
     }

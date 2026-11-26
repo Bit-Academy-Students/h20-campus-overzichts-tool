@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Assignments;
+use App\Models\Assignment;
 use Illuminate\Http\Request;
 
-class AssignmentsController extends Controller
+class AssignmentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -34,7 +34,7 @@ class AssignmentsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Assignments $assignments)
+    public function show(Assignment $assignment)
     {
         //
     }
@@ -42,7 +42,7 @@ class AssignmentsController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Assignments $assignments)
+    public function edit(Assignment $assignment)
     {
         //
     }
@@ -50,7 +50,7 @@ class AssignmentsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Assignments $assignments)
+    public function update(Request $request, Assignment $assignment)
     {
         //
     }
@@ -58,7 +58,7 @@ class AssignmentsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Assignments $assignments)
+    public function destroy(Assignment $assignment)
     {
         //
     }

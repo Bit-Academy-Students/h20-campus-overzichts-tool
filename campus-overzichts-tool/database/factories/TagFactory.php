@@ -2,13 +2,13 @@
 
 namespace Database\Factories;
 
-use App\Models\Tags;
+use App\Models\Tag;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends Factory<Tags>
+ * @extends Factory<Tag>
  */
-class TagsFactory extends Factory
+class TagFactory extends Factory
 {
     public function definition(): array
     {
