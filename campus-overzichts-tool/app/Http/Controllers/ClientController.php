@@ -4,62 +4,64 @@ namespace App\Http\Controllers;
 
 use App\Models\Client;
 use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
 
 class ClientController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    // lijst van alle Clients
     public function index()
     {
-        //
+        return response()->json(Client::all());
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    // nieuwe Client aanmaken
+    public function store(Request $request): JsonResponse
     {
-        //
+        $data = $request->validate([
+            'name' => ['required', 'string', 'max:100'],
+            'description' => ['required', 'string', 'max:1000'],
+            'website' => ['required', 'string', 'max:100'],
+            'email' => ['required', 'email', 'max:100', 'unique:clients,email'],
+            'phone' => ['nullable', 'string', 'max:11', 'unique:clients,phone'],
+            'address' => ['required', 'string', 'max:100'],
+            'city' => ['required', 'string', 'max:50']
+        ]);
+
+        $client = Client::create($data);
+
+        return response()->json($client, 201);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    // laat 1 specifieke client zien
+    public function show(Client $client): JsonResponse
     {
-        //
+        return response()->json($client);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Client $client)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Client $client)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
+    // edit een client
     public function update(Request $request, Client $client)
     {
-        //
+        $data = $request->validate([
+            'name' => ['sometimes', 'string', 'max:100'],
+            'description' => ['sometimes', 'string', 'max:1000'],
+            'website' => ['sometimes', 'string', 'max:100'],
+            'email' => ['sometimes', 'email', 'max:100', 'Rule::unique('clients', 'email')->ignore($user->id)],
+            'phone' => ['sometimes', 'string', 'max:11', 'Rule::unique('clients', 'phone')->ignore($user->id)],
+            'address' => ['sometimes', 'string', 'max:100'],
+            'city' => ['sometimes', 'string', 'max:50']
+        ]);
+        
+        $client->update($data);
+
+        return response()->json($client);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Client $client)
+    // delete een client
+    public function destroy(Client $client): JsonResponse
     {
-        //
+        $client->delete();
+
+        return response()->json(null, 204);
     }
 }
