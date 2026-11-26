@@ -7,6 +7,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 
 class UsersController extends Controller
@@ -31,6 +32,24 @@ class UsersController extends Controller
         $user = User::create($data + ['role' => 'pending']);
 
         return response()->json($user, 201);
+    }
+
+    // POST /login - inloggen met email + password (wachtwoord wordt server-side vergeleken met de hash).
+    // Geeft 200 + redirect-url bij succes, 422 bij foute gegevens.
+    public function login(Request $request): JsonResponse
+    {
+        $credentials = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required', 'string'],
+        ]);
+
+        if (!Auth::attempt($credentials, $request->boolean('remember'))) {
+            return response()->json(['message' => 'Email or password is incorrect.'], 422);
+        }
+
+        $request->session()->regenerate();
+
+        return response()->json(['redirect' => route('dashboard')]);
     }
 
     // GET /api/users/{user} - één user.
