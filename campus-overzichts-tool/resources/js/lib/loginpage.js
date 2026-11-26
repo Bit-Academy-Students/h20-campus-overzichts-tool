@@ -14,15 +14,27 @@ async function logInToAccount() {
         window.alert("All fields must be filled out.");
         return (null);
     }
-    
-    data.forEach(account => {
-        if (account.email == emailValue) {
-            if (account.password == passwordValue) {
-                window.location.replace("http://localhost:8000/dashboard");
-            } else {
-                document.getElementById("passwordMessage").style.display = "block";
-                document.getElementById("passwordMessage").textContent = "Password is incorrect.";
-            }
-        } 
-    });
+
+    attemptLogin(emailValue, passwordValue);
 }
+
+async function attemptLogin(email, password) {
+    const token = document.querySelector('meta[name="csrf-token"]').content;
+    const stringifyJSON = {
+        email: email,
+        password: password,
+    }
+
+    const res = await fetch("/login", {
+        method: "POST",
+        headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json",
+            "X-CSRF-TOKEN": token,
+        },
+        body: JSON.stringify(stringifyJSON),
+    });
+
+    const url = await res.json();
+    console.log(url);
+};
