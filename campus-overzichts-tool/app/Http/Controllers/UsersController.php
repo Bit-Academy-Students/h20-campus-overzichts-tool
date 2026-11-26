@@ -1,7 +1,7 @@
 <?php
 
 // user controller api 
-//thing in docs in endpoints find je details over alle endpoints en hoe je ze moet gebruiken
+// docs in endpoints find je details over alle endpoints en hoe je ze moet gebruiken
 namespace App\Http\Controllers;
 
 use App\Models\User;
@@ -31,7 +31,7 @@ class UsersController extends Controller
 
         $user = User::create($data + ['role' => 'pending']);
 
-        return response()->json($user, 201);
+        return response()->json(['redirect' => route('login')], 201);
     }
 
     // POST /login - inloggen met email + password (wachtwoord wordt server-side vergeleken met de hash).
