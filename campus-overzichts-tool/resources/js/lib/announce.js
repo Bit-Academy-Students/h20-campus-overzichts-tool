@@ -8,27 +8,12 @@ function announce(string, type) {
     announceType.textContent = type;
     announceMessage.textContent = string;
 
-    switch (type) {
-        case "success":
-            
-            break;
-        case "warning":
-            
-            break;
-        case "error":
-            
-            break;
-        case "message":
-            
-            break;
     
-        default:
-            break;
-    }
+    
 
     setInterval(() => {
         annnounceDiv.remove();
-    }, 3000);
+    }, 5000);
 }
 
 

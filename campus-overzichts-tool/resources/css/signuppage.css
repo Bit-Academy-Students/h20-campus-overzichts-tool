@@ -79,7 +79,6 @@ body {
 
 h1 {
     font-size: 60px;
-    -webkit-text-stroke: black 2px;
     margin: 0;
 }
 
@@ -171,4 +170,10 @@ img#techCampus {
     display: flex;
     flex-direction: row;
     align-items: center;
+}
+
+.errorMessage {
+    color: red;
+    text-decoration: underline;
+    margin: 1px;
 }

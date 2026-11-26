@@ -126,7 +126,7 @@ input:hover {
     gap: 8px;
 }
 
-#createAccount {
+#loginToAccount {
     transition: all 0.3s ease;
     color: white;
     background-color: #E53362;
@@ -135,7 +135,7 @@ input:hover {
     border-radius: 3px;
 }
 
-#createAccount:hover {
+#loginToAccount:hover {
     padding: 5px 25px 5px 25px;
 }
 
@@ -151,4 +151,10 @@ img#techCampus {
     display: flex;
     flex-direction: row;
     align-items: center;
+}
+
+.errorMessage {
+    color: red;
+    text-decoration: underline;
+    margin: 1px;
 }

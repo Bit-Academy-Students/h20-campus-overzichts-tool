@@ -37,20 +37,22 @@
         <form id="form">
             <div id="emailAlign">
                 <div class="vertAlign">
-                    <label for="email">E-Mail:</label>
-                    <input type="email" name="email">
+                    <label for="email" autocomplete="true">E-Mail:</label>
+                    <input type="email" name="email" id="email">
+                    <p class="errorMessage" id="emailMessage" style="display: none;"></p>
                 </div>
                 <div class="vertAlign">
                     <label for="password">Password:</label>
-                    <input type="password" name="password">
+                    <input type="password" name="password" id="password">
+                    <p class="errorMessage" id="passwordMessage" style="display: none;"></p>
                 </div>
             </div>
             <div>
                 <label for="remember">Remember me:</label>
                 <input type="checkbox" name="remember">
             </div>
-            <button id="createAccount">Login</button>
-            <p>Dont have an account? <span><a href="{{ route('signup') }}">Go to Signup</a></span></p>
+            <button id="loginToAccount" type="button">Login</button>
+            <p>Don't have an account? <span><a href="{{ route('signup') }}">Go to Signup</a></span></p>
         </form>
         <div id="trademark">
             <img src="{{ asset('icons/purmerendLogo.svg') }}" alt="purmerend" id="purmerend">

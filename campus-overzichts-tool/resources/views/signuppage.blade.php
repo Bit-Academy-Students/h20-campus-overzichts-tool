@@ -49,10 +49,12 @@
                 <div class="vertAlign">
                     <label for="email">E-Mail:</label>
                     <input type="email" name="email" id="email">
+                    <p id="emailMessage" style="display: none;" class="errorMessage"></p>
                 </div>
                 <div class="vertAlign">
                     <label for="password">Password:</label>
                     <input type="password" name="password" id="password">
+                    <p id="passwordMessage" style="display: none;" class="errorMessage"></p>
                 </div>
             </div>
             <div>
