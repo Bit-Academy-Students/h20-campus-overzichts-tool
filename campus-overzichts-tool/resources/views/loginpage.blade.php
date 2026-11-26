@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Tech Campus - Map Waterland</title>
     @vite([
     'resources/css/loginpage.css',
@@ -34,7 +35,8 @@
     </div>
     <div id="formdiv">
         <h1>Log in</h1>
-        <form id="form">
+        <form method="POST" action="/login" id="form">
+            @csrf
             <div id="emailAlign">
                 <div class="vertAlign">
                     <label for="email" autocomplete="true">E-Mail:</label>
