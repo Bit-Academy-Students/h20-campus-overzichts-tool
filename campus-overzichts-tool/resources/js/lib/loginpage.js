@@ -35,6 +35,11 @@ async function attemptLogin(email, password) {
         body: JSON.stringify(stringifyJSON),
     });
 
-    const url = await res.json();
-    console.log(url);
+    if (res.status !== 200) {
+        document.getElementById("passwordMessage").style.display = "block";
+        document.getElementById("passwordMessage").textContent = "Given credentials are incorrect.";
+    } else {
+        const url = await res.json();
+        window.location.replace(url.redirect);
+    }
 };
