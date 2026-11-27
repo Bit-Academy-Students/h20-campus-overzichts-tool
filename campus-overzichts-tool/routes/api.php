@@ -1,8 +1,12 @@
 <?php
 
-use App\Http\Controllers\UsersController;
+use App\Http\Controllers\AssignmentClaimController;
+use App\Http\Controllers\AssignmentController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 // Alle routes krijgen automatisch het prefix /api
 // kijk in docs endpoints.md voor info guys
-Route::apiResource('users', UsersController::class);
+Route::apiResource('users', UserController::class);
+Route::apiResource('assignments', AssignmentController::class);
+Route::apiResource('assignment-claims', AssignmentClaimController::class);

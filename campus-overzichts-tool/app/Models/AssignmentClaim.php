@@ -10,6 +10,8 @@ class AssignmentClaim extends Model
 {
     use HasFactory;
 
+    public const STATUSES = ['claimed', 'assigned', 'completed'];
+
     protected $table = 'assignment_claims';
 
     public $timestamps = false;

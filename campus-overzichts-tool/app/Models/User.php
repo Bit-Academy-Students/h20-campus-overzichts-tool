@@ -29,6 +29,8 @@ class User extends Authenticatable
     /** @use HasFactory<UserFactory> */
     use HasFactory, Notifiable;
 
+    public const ROLES = ['pending', 'municipality', 'admin'];
+
     public const UPDATED_AT = null;
 
     /**
