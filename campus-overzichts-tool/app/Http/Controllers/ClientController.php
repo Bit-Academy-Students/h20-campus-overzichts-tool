@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Client;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Validation\Rule;
 
 class ClientController extends Controller
 {
@@ -47,7 +48,7 @@ class ClientController extends Controller
             'description' => ['sometimes', 'string', 'max:1000'],
             'website' => ['sometimes', 'string', 'max:100'],
             'email' => ['sometimes', 'email', 'max:100', Rule::unique('clients', 'email')->ignore($client->id)],
-            'phone' => ['sometimes', 'string', 'max:30', Rule::unique('clients', 'phone')->ignore($client->id)],
+            'phone' => ['sometimes', 'string', 'nullable', 'max:30', Rule::unique('clients', 'phone')->ignore($client->id)],
             'address' => ['sometimes', 'string', 'max:100'],
             'city' => ['sometimes', 'string', 'max:50']
         ]);
