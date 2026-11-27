@@ -56,6 +56,20 @@ Regels:
 
 Fouten: `404` bestaat niet, `422` validatie mislukt (o.a. assignment al geclaimd).
 
+## Assignment tags
+
+| Methode | URL | Doel |
+|---|---|---|
+| GET | `/api/assignments/{id}/tags` | alle tags van een assignment |
+| POST | `/api/assignments/{id}/tags` | tag(s) koppelen aan een assignment |
+| DELETE | `/api/assignments/{id}/tags/{tag_id}` | tag ontkoppelen |
+
+Body voor POST: `tag_id` (één tag) of `tags` (array met tag-id's). Bestaande tags blijven staan,
+dubbele koppelingen worden genegeerd. Wil je alle tags in één keer vervangen, gebruik dan
+`tags` bij `PATCH /api/assignments/{id}`.
+
+Fouten: `404` assignment/tag bestaat niet of tag is niet gekoppeld, `422` validatie mislukt.
+
 ## Nog te doen
 
-Assignment_Tags, Client, ClientTag, ContactPerson, Contractor, ContractorTag, Keywords, Sources, Tags.
+Client, ClientTag, ContactPerson, Contractor, ContractorTag, Keywords, Sources, Tags.

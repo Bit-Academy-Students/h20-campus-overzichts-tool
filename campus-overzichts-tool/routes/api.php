@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AssignmentClaimController;
 use App\Http\Controllers\AssignmentController;
+use App\Http\Controllers\AssignmentTagController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -10,3 +11,4 @@ use Illuminate\Support\Facades\Route;
 Route::apiResource('users', UserController::class);
 Route::apiResource('assignments', AssignmentController::class);
 Route::apiResource('assignment-claims', AssignmentClaimController::class);
+Route::apiResource('assignments.tags', AssignmentTagController::class)->only(['index', 'store', 'destroy']);
