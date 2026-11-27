@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -23,5 +24,7 @@ Route::get('/overview', function () {
 })->name('overview');
 
 Route::get('/signup', function () {
-    return view('signup');
+    return view('signuppage');
 })->name('signup');
+
+Route::post('/login', [UsersController::class, 'login'])->name('login');
