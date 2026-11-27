@@ -22,7 +22,7 @@ class ClientController extends Controller
             'description' => ['required', 'string', 'max:1000'],
             'website' => ['required', 'string', 'max:100'],
             'email' => ['required', 'email', 'max:100', 'unique:clients,email'],
-            'phone' => ['nullable', 'string', 'max:11', 'unique:clients,phone'],
+            'phone' => ['nullable', 'string', 'max:30', 'unique:clients,phone'],
             'address' => ['required', 'string', 'max:100'],
             'city' => ['required', 'string', 'max:50']
         ]);
@@ -46,8 +46,8 @@ class ClientController extends Controller
             'name' => ['sometimes', 'string', 'max:100'],
             'description' => ['sometimes', 'string', 'max:1000'],
             'website' => ['sometimes', 'string', 'max:100'],
-            'email' => ['sometimes', 'email', 'max:100', 'Rule::unique('clients', 'email')->ignore($user->id)],
-            'phone' => ['sometimes', 'string', 'max:11', 'Rule::unique('clients', 'phone')->ignore($user->id)],
+            'email' => ['sometimes', 'email', 'max:100', Rule::unique('clients', 'email')->ignore($client->id)],
+            'phone' => ['sometimes', 'string', 'max:30', Rule::unique('clients', 'phone')->ignore($client->id)],
             'address' => ['sometimes', 'string', 'max:100'],
             'city' => ['sometimes', 'string', 'max:50']
         ]);
