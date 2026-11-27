@@ -1,7 +1,6 @@
 <?php
 
-// user controller api 
-// docs in endpoints find je details over alle endpoints en hoe je ze moet gebruiken
+// Users API, zie docs/endpoints.md
 namespace App\Http\Controllers;
 
 use App\Models\User;
@@ -10,7 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 
-class UsersController extends Controller
+class UserController extends Controller
 {
     // GET /api/users - lijst van alle users.
     public function index(): JsonResponse
@@ -18,14 +17,13 @@ class UsersController extends Controller
         return response()->json(User::all());
     }
 
-
     // POST /api/users - nieuwe user aanmaken.
     public function store(Request $request): JsonResponse
     {
         $data = $request->validate([
             'first_name' => ['required', 'string', 'max:100'],
             'last_name' => ['required', 'string', 'max:100'],
-            'email' => ['required', 'email', 'max:255', 'unique:users,email'],
+            'email' => ['required', 'email', 'max:255', Rule::unique('users', 'email')],
             'password' => ['required', 'string', 'min:8'],
         ]);
 
@@ -66,7 +64,7 @@ class UsersController extends Controller
             'last_name' => ['sometimes', 'string', 'max:100'],
             'email' => ['sometimes', 'email', 'max:255', Rule::unique('users', 'email')->ignore($user->id)],
             'password' => ['sometimes', 'string', 'min:8'],
-            'role' => ['sometimes', Rule::in(['pending', 'municipality', 'admin'])],
+            'role' => ['sometimes', Rule::in(User::ROLES)],
         ]);
 
         $user->update($data);
